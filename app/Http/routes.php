@@ -11,16 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+	'uses' => 'HomeController@index',
+	'as'   => 'home']);
 
 
 // Authentication routes...
 Route::get('login', [
 	'uses' => 'Auth\AuthController@getLogin',
 	'as'   => 'login']);
-Route::post('login', 'Auth\AuthController@postLogin');
+Route::post('login', [
+	'uses' => 'Auth\AuthController@postLogin',
+	'as'   => 'login']);
 Route::get('logout', [
 	'uses' => 'Auth\AuthController@getLogout',
 	'as'   => 'logout']);
@@ -29,7 +31,9 @@ Route::get('logout', [
 Route::get('registro', [
 	'uses' => 'Auth\AuthController@getRegister',
 	'as'   => 'register']);
-Route::post('registro', 'Auth\AuthController@postRegister');
+Route::post('registro', [
+	'uses' => 'Auth\AuthController@postRegister',
+	'as'   => 'register']);
 
 
 // Password reset link request routes...
